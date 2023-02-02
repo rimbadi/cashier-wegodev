@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      v-model="sideDrawer"
-      fixed
-      app
-    >
+    <v-navigation-drawer v-model="sideDrawer" fixed app>
       <v-list>
         <v-list-item
           v-for="(item, i) in sideMenu"
@@ -22,43 +18,31 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar 
-      :clipped-left="clipped" 
-      fixed 
-      app
-    >
-      
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
-    </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
-    
-    <v-bottom-navigation
-      horizontal
-      height="10vh"
-      fixed
-      color="primary"
-      app>
-    <v-app-bar-nav-icon 
-      @click.stop="sideDrawer = !sideDrawer"
-      v-ripple="false" 
-      plain/>
-        <v-btn 
-          v-for="(item, i) in buttomMenu"
-            :key="i"
-            :to="item.to"
-            v-ripple="false"
-            plain>
-          <v-span>{{ item.title }}</v-span>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-btn>
-        <v-spacer />
-    </v-bottom-navigation>
 
+    <v-bottom-navigation horizontal height="10vh"  color="primary" fixed app>
+      <v-app-bar-nav-icon
+        @click.stop="sideDrawer = !sideDrawer"
+        v-ripple="false"
+        plain
+      />
+      <v-btn
+        v-for="(item, i) in buttomMenu"
+        :key="i"
+        :to="item.to"
+        v-ripple="false"
+        plain
+      >
+        <v-span>{{ item.title }}</v-span>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-btn>
+      <v-spacer />
+    </v-bottom-navigation>
   </v-app>
 </template>
 
@@ -75,21 +59,18 @@ export default {
           to: '/account',
         },
         {
-          icon:'mdi-bell',
-          title:'Notification',
-          to:'/notification',
-        }
+          icon: 'mdi-bell',
+          title: 'Notification',
+          to: '/notification',
+        },
       ],
-
       buttomMenu: [
         {
           icon: 'mdi-application',
           title: 'App',
           to: '/',
-        }
+        },
       ],
-      right: true,
-      title: 'Cashier',
     }
   },
 }

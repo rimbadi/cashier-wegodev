@@ -1,0 +1,21 @@
+html,body{
+    padding: 0;
+    overflow: hidden !important;
+  }
+  .frameContent{
+    height: 90vh;
+    overflow-y: auto;
+    }
+    
+    .frameContent::-webkit-scrollbar{
+      width: 10px;
+    }
+    .frameContent::-webkit-scrollbar-track{
+      background-color: #fff6f6;
+      border-radius: 100px;
+    }
+    
+    .frameContent::-webkit-scrollbar-thumb{
+      background-color: #dbdbdb;
+      border-radius: 100px;
+    }
