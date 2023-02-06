@@ -1,20 +1,21 @@
 <template>
   <v-row>
     <v-col cols="8" class="frameContent px-6">
-      <Products></Products>
+      <Product></Product>
     </v-col>
     <v-col cols="4" class="frameContent white">
-      ORDER
+      <Order></Order>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import Products from '~/components/Products.vue';
+import Order from '~/components/Order.vue';
+import Product from '~/components/Product.vue';
 
 export default {
     name: "IndexPage",
-    components: { Products }
+    components: { Product, Order }
 }
 </script>
 <style scoped>
