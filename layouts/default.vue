@@ -68,7 +68,7 @@ export default {
         {
           icon: 'mdi-application',
           title: 'App',
-          to: '/',
+          to: '/app',
         },
       ],
     }

@@ -8,7 +8,7 @@
         :loading="isLoading"
         :items="itemsSearch"
         item-text="title"
-        item-value="id"
+        item-value="_id"
         v-model="selectedSearch"
         return-object
         hide-no-data> 
@@ -25,9 +25,9 @@
               <v-list-item
                 v-for="(category,index) in categories"
                 :key="index"
-                :value="category.id"
-                :disabled="category.id == categoryId"
-                @change="updateCategoryId(category.id)"
+                :value="category._id"
+                :disabled="category._id == categoryId"
+                @change="updateCategoryId(category._id)"
               >
                 <v-list-item-title>
                   {{ category.title }}
@@ -70,7 +70,9 @@ export default {
   methods:{
     ...mapActions({
       updateCategoryId: 'products/updateCategoryId',
-      addToCart: 'carts/addToCart'
+      addToCart: 'carts/addToCart',
+      fetchProducts: 'products/fetchProducts',
+      fetchCategories: 'products/fetchCategories',
     }),
     resetSearchCategory(){
         this.categoryId = false
@@ -105,6 +107,10 @@ export default {
             })
         },1000)
     }
+  },
+  mounted(){
+    this.fetchProducts()
+    this.fetchCategories()
   }
 }
 </script>

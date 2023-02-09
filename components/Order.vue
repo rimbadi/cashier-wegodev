@@ -61,7 +61,7 @@
             </v-list-item-content>
           </template>
           <template v-for="(additional, index) in additionals">
-            <v-list-item disabled :key="index">
+            <v-list-item disabled>
               <v-list-item-content>
                 <v-list-item-title>{{ additional.title }}</v-list-item-title>
                 <v-list-item-subtitle v-if="additional.mode =='percentage'">{{ currency(additional.value) }}%</v-list-item-subtitle>
