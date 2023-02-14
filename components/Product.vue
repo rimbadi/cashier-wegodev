@@ -8,7 +8,7 @@
         :loading="isLoading"
         :items="itemsSearch"
         item-text="title"
-        item-value="_id"
+        item-value="id"
         v-model="selectedSearch"
         return-object
         hide-no-data> 
@@ -39,8 +39,8 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col v-for="product in filteredProducts" :key="product.id" cols="2">
-        <v-card @click="addToCart(product.id)" :title="product.title" :ripple="true">
+      <v-col v-for="(product, index) in filteredProducts" :key="index" cols="2">
+        <v-card @click="addToCart(product._id)" :title="product.title" :ripple="true">
           <v-card-actions>
             <v-img
               :src="require(`@/assets/images/products/${product.thumbnail}`)"
@@ -75,17 +75,14 @@ export default {
       fetchCategories: 'products/fetchCategories',
     }),
     resetSearchCategory(){
-        this.categoryId = false
+        this.updateCategoryId(0)
     }
   },
   computed: {
     filteredProducts() {
         console.log(this.selectedSearch)
       if (this.categoryId) {
-        return this.products.filter((s) => s.categoryId == this.categoryId)
-      }
-      else if(this.selectedSearch){
-        return this.products.filter((s) => s.title == this.selectedSearch.title)
+        return this.product.filter((s) => s.categoryId == this.categoryId)
       }
       return this.products
     },
@@ -106,6 +103,11 @@ export default {
                 return e.title
             })
         },1000)
+    },
+    selectedSearch(product){
+      if (product) {
+        this.addToCart(product._id)
+      }
     }
   },
   mounted(){
