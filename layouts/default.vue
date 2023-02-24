@@ -25,7 +25,7 @@
       </v-container>
     </v-main>
 
-    <v-bottom-navigation horizontal height="10vh"  color="primary" fixed app>
+    <v-bottom-navigation horizontal height="10vh" color="primary" fixed app>
       <v-app-bar-nav-icon
         @click.stop="sideDrawer = !sideDrawer"
         v-ripple="false"
@@ -68,10 +68,32 @@ export default {
         {
           icon: 'mdi-application',
           title: 'App',
-          to: '/app',
+          to: '/',
         },
       ],
     }
+  },
+  methods: {
+    iswelcomeScreen() {
+      if (!localStorage.welcomeScreen) {
+        if (
+          this.$router.currentRoute.path != '/register' &&
+          this.$router.currentRoute.path != '/login'
+        ) {
+          this.$router.push('/register')
+        }
+      }
+    },
+  },
+  watch: {
+    $route() {
+      this.iswelcomeScreen()
+    },
+  },
+  mounted() {
+    // localStorage.setItem("welcomeScreen",true);
+    this.iswelcomeScreen()
+    console.log(this.$router.currentRoute.path)
   },
 }
 </script>
